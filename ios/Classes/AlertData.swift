@@ -15,6 +15,7 @@ struct AlertData {
     let message: String?
     let positiveButtonText: String
     let negativeButtonText: String
+    let preferredAction: Bool
     let destructive: Bool
     init(withDictionary dictionary: [String: Any]) {
         self.title = dictionary["title"] as? String
@@ -22,6 +23,6 @@ struct AlertData {
         self.positiveButtonText = dictionary["positiveButtonText"] as? String ?? AlertData.DEFAULT_POSITIVE_BUTTON_TEXT
         self.negativeButtonText = dictionary["negativeButtonText"] as? String ?? AlertData.DEFAULT_NEGATIVE_BUTTON_TEXT
         self.destructive = dictionary["destructive"] as? Bool ?? false
+        self.preferredAction = dictionary["preferredAction"] as? Bool ?? false
     }
-    
 }

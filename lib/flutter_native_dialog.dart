@@ -43,6 +43,7 @@ class FlutterNativeDialog {
     String positiveButtonText = DEFAULT_POSITIVE_BUTTON_TEXT,
     String negativeButtonText = DEFAULT_NEGATIVE_BUTTON_TEXT,
     bool destructive = false,
+    bool preferredAction = false,
   }) async {
     return await _channel.invokeMethod(
       'dialog.confirm',
@@ -52,6 +53,7 @@ class FlutterNativeDialog {
         "positiveButtonText": positiveButtonText,
         "negativeButtonText": negativeButtonText,
         "destructive": destructive,
+        "preferredAction": preferredAction,
       },
     );
   }

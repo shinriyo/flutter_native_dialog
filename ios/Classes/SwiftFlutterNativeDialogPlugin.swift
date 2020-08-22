@@ -48,12 +48,19 @@ public class SwiftFlutterNativeDialogPlugin: NSObject, FlutterPlugin {
     
     private func buildConfirmDialog(alertData: AlertData, result: @escaping FlutterResult) -> UIAlertController {
         let alertController = buildAlertController(title: alertData.title, message: alertData.message)
-        alertController.addAction(UIAlertAction(title: alertData.positiveButtonText, style: alertData.destructive ? .destructive : .default, handler: { _ in
+        let okAction = UIAlertAction(title: alertData.positiveButtonText, style: alertData.destructive ? .destructive : .default, handler: { _ in
             result(true)
-        }))
+        })
+        alertController.addAction(okAction)
         alertController.addAction(UIAlertAction(title: alertData.negativeButtonText, style: .cancel, handler: { _ in
             result(false)
         }))
+
+        if #available(iOS 9.0, *) {
+            if (alertData.preferredAction) {
+                alertController.preferredAction = okAction
+            }
+        }
         return alertController
     }
     
